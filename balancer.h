@@ -17,13 +17,13 @@ enum BalboaConstants {
     SPEED_RESPONSE = 3300,
     CALIBRATION_ITERATIONS = 100,
 
-    UPDATE_TIME = 1, // Multiply by 100 to get Hz
+    UPDATE_TIME = 1, // Device by 100 to get Hz
 };
 
 struct Variables {
     float GYZero = 0.0;
-    int angle = 0;
-    int angle_rate = 0;
+    int angle = 0;      // Millidegrees
+    int angle_rate = 0; // degrees / s
     int nextUpdate = 0;
     int motorSpeed = 0;
 
