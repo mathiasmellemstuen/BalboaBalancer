@@ -20,7 +20,7 @@ enum BalboaConstants {
     UPDATE_TIME = 1, // Multiply by 100 to get Hz
 };
 
-struct Vars {
+struct Variables {
     float GYZero = 0.0;
     int angle = 0;
     int angle_rate = 0;
@@ -38,10 +38,10 @@ struct Vars {
 
 } variables;
 
-void Setup();
-void IsBalancing();
-void Update();
-void UpdateSensors();
-void ResetEncoders();
+void balancerSetup();
+void isBalancing();
+void balancerUpdate();
+void balancerUpdateSensors();
+void balancerResetEncoders();
 
 #endif
