@@ -7,13 +7,6 @@ struct LAR {
     int right = 0;
 };
 
-const struct BalboaPinLayout {
-    const int MOTOR_LEFT_DIRECTION = 16;
-    const int MOTOR_RIGHT_DIRECTION = 15;
-    const int MOTOR_LEFT_SPEED = 10;
-    const int MOTOR_RIGHT_SPEED = 9;
-} balboaPinLayout;
-
 enum BalboaConstants {
     GEAR_RATIO = 111,
     MOTOR_SPEED_LIMIT = 300,
@@ -42,9 +35,8 @@ struct Vars {
     bool calibated = false;
     bool balancing = false;
     bool running = false;
-};
 
-Vars vars;
+} variables;
 
 void Setup();
 void IsBalancing();

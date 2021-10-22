@@ -1,4 +1,5 @@
 #include <Balboa32U4.h>
+#include "balancer.h"
 
 Balboa32U4Motors motors;
 Balboa32U4ButtonA startStopButton;
@@ -8,11 +9,14 @@ bool running = false;
 
 void setup() {
   buzzer.play("!L30 V8 cdefgab>cbagfedc");
+  variables.speed.left = 100;
+  variables.speed.right = 200;
+
 }
 
 void balance() {
   
-  motors.setSpeeds(150, 150); 
+  motors.setSpeeds(variables.speed.left, variables.speed.right); 
 }
 
 void loop() {
