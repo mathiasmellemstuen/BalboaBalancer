@@ -9,7 +9,14 @@ struct LAR {
     int right = 0;
 };
 
-enum Consts {
+const struct BalboaPinLayout {
+    const int MOTOR_LEFT_DIRECTION = 16;
+    const int MOTOR_RIGHT_DIRECTION = 15;
+    const int MOTOR_LEFT_SPEED = 10;
+    const int MOTOR_RIGHT_SPEED = 9;
+} balboaPinLayout;
+
+enum BalboaConstants {
     GEAR_RATIO = 111,
     MOTOR_SPEED_LIMIT = 300,
     ANGLE_RATE_RATIO = 140,
@@ -19,7 +26,7 @@ enum Consts {
     SPEED_RESPONSE = 3300,
     CALIBRATION_ITERATIONS = 100,
 
-    UPDATE_TIME = 1 // Deviden by 100 in H<
+    UPDATE_TIME = 1, // Multiply by 100 to get Hz
 };
 
 struct Vars {
