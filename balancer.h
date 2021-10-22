@@ -1,5 +1,5 @@
-#ifndef BALANCER
-#define BALANCER
+#ifndef BALBOA_BALANCER_BALANCER
+#define BALBOA_BALANCER_BALANCER
 
 // Struct to hold left and right values. For more somple code
 struct LAR {
