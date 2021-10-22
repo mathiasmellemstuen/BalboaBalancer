@@ -11,7 +11,6 @@
 ```json 
     "arduino.path": "/snap/arduino/current"
 ```
-<<<<<<< HEAD
 5. Install the `Balboa32U4` library
 6. Type in the command ">Arduino: Change board type". Select Arduino Leonardo.
 
@@ -25,11 +24,8 @@
 ```
 5. Install the `Balboa32U4` library
 6. Type in the command ">Arduino: Change board type". Select Arduino Leonardo.
-=======
-5. Type in the command ">Arduino: Change board type". Select Arduino Leonardo.
 
 # References
 - [https://pololu.github.io/balboa-32u4-arduino-library/](https://pololu.github.io/balboa-32u4-arduino-library/)
 - [https://github.com/pololu/pololu-rpi-slave-arduino-library/tree/balboa](https://github.com/pololu/pololu-rpi-slave-arduino-library/tree/balboa)
 - [https://www.pololu.com/docs/0J70/3.3](https://www.pololu.com/docs/0J70/3.3)
->>>>>>> 5c5a3bed25a6bff34f3ceabb17683eb19f828402
