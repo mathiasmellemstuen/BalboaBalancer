@@ -22,8 +22,8 @@ enum BalboaConstants {
 
 struct Variables {
     float GYZero = 0.0;
-    int angle = 0;
-    int angle_rate = 0;
+    int angle = 0;      // Millidegrees
+    int angle_rate = 0; // degrees / s
     int nextUpdate = 0;
     int motorSpeed = 0;
 
