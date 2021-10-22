@@ -1,0 +1,6 @@
+#ifndef BALBOA_BALANCER_SENSOR
+#define BALBOA_BALANCER_SENSOR
+
+
+
+#endif
