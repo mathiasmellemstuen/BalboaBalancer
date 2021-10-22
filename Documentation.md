@@ -12,3 +12,8 @@
     "arduino.path": "/snap/arduino/current"
 ```
 5. Type in the command ">Arduino: Change board type". Select Arduino Leonardo.
+
+# References
+- [https://pololu.github.io/balboa-32u4-arduino-library/](https://pololu.github.io/balboa-32u4-arduino-library/)
+- [https://github.com/pololu/pololu-rpi-slave-arduino-library/tree/balboa](https://github.com/pololu/pololu-rpi-slave-arduino-library/tree/balboa)
+- [https://www.pololu.com/docs/0J70/3.3](https://www.pololu.com/docs/0J70/3.3)

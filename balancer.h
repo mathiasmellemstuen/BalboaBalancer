@@ -7,7 +7,14 @@ struct LAR {
     int right = 0;
 };
 
-struct Consts {
+const struct BalboaPinLayout {
+    const int MOTOR_LEFT_DIRECTION = 16;
+    const int MOTOR_RIGHT_DIRECTION = 15;
+    const int MOTOR_LEFT_SPEED = 10;
+    const int MOTOR_RIGHT_SPEED = 9;
+} balboaPinLayout;
+
+struct BalboaConstants {
     int GEAR_RATIO = 111;
     int MOTOR_SPEED_LIMIT = 300;
     int ANGLE_RATE_RATIO = 140;
@@ -19,8 +26,6 @@ struct Consts {
 
     float UPDATE_TIME = 0.01;
 };
-
-
 
 
 #endif
