@@ -4,6 +4,9 @@
 
 int zeroValue = 0; 
 int gyroScopeAngle = 0; 
+
+int accelerometer = 0;
+
 char debugCharacters[80];
 LSM6 imu;
 
@@ -44,9 +47,14 @@ void sensorUpdate() {
 
     int angleRate = (imu.g.y - zeroValue) / 29; 
     gyroScopeAngle += angleRate;
+
+    accelerometer = imu.a.x;
 }
 
 void sensorDebugPrint() {
     snprintf(debugCharacters, sizeof(debugCharacters), "GYRO  y: %6d", gyroScopeAngle);
+    Serial.println(debugCharacters);
+    
+    snprintf(debugCharacters, sizeof(debugCharacters), "ACEL  x: %6d", accelerometer);
     Serial.println(debugCharacters);
 }
