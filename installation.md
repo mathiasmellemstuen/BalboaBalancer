@@ -27,10 +27,3 @@ This section will explain how to setup an Arduino development enviroment in Visu
 6. Install the 'LSM6' library
 7. Install the 'LIS3MDL' library
 8. Type in the command ">Arduino: Change board type". Select Arduino Leonardo.
-
-# References
-- [https://pololu.github.io/balboa-32u4-arduino-library/](https://pololu.github.io/balboa-32u4-arduino-library/)
-- [https://github.com/pololu/pololu-rpi-slave-arduino-library/tree/balboa](https://github.com/pololu/pololu-rpi-slave-arduino-library/tree/balboa)
-- [https://www.pololu.com/docs/0J70/3.3](https://www.pololu.com/docs/0J70/3.3)
-- [https://en.wikipedia.org/wiki/PID_controller](https://en.wikipedia.org/wiki/PID_controller)
-- [https://www.pololu.com/file/0J1087/LSM6DS33.pdf](https://www.pololu.com/file/0J1087/LSM6DS33.pdf)
