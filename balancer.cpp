@@ -36,7 +36,7 @@ void balancerUpdate() {
     
     // Check if the robot is trying to balance or if it is laying down. Then do the correct thign
     if (variables.balancing) {
-        balance();
+        balanceing();
         
         if (abs(variables.angle) > STOP_BALANCING_ANGLE) {
             if (++count > 5) {
@@ -100,7 +100,7 @@ int calculateMotorSpeed(int risingAngleOffset) {
 }
 
 // Main code loop for balancing the robot
-void balance() {
+void balanceing() {
     variables.angle = variables.angle * 999 / 1000;
     int risingAngleOffset = variables.angleRate * ANGLE_RATE_RATIO + variables.angle;
     

@@ -23,7 +23,7 @@ enum BalboaConstants {
     START_BALANCING_ANGLE = 45000,  // 45 Deg 
     STOP_BALANCING_ANGLE = 70000,   // 70 Deg
 
-    UPDATE_TIME = 1, // Device by 100 to get Hz
+    UPDATE_TIME = 1, // Devide by 100 to get Hz
 };
 
 struct Variables {
@@ -50,7 +50,7 @@ LSM6 imuT;
 Balboa32U4Motors motorsT;
 Balboa32U4Encoders encodersT;
 
-void balance();
+void balanceing();
 void lyingDown();
 
 void balancerSetup();
