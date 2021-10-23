@@ -2,43 +2,24 @@
 #include <Balboa32U4.h>
 #include <LSM6.h>
 #include <Wire.h>
+#include "pid.h"
 
-Balboa32U4Motors motors;
-Balboa32U4ButtonA startStopButton;
 Balboa32U4Buzzer buzzer;
- 
-bool running = false; 
-
+Balboa32U4Motors motors;
 void setup() {
-  buzzer.play("!L30 V8 cdefgab>cbagfedc");
-
-
   Serial.begin(9600);
-
+  buzzer.play("!L30 V8 cdefgab>cbagfedc");
   sensorSetup(); 
 }
 
-void balance() {
-  
-//  motors.setSpeeds(variables.speed.left, variables.speed.right); 
-}
-
-
 void loop() {
-
 
   sensorUpdate();
 
+  float pidValue = pid(1.0f, 0.0f, 0.0f, 0.0f, getGyroscopeAngle(),0.1);
 
-  if(startStopButton.isPressed()) {
-    running = !running; 
-  }
-  if(running == false) {
-    motors.setSpeeds(0, 0);
-  }
-  else {
-    balance(); 
-  }
-  sensorDebugPrint(); 
+  Serial.println(pidValue); 
+
+  motors.setSpeeds(-pidValue, -pidValue); 
   delay(100);
 } 

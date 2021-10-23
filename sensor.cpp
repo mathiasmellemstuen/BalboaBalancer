@@ -50,3 +50,7 @@ void sensorDebugPrint() {
     snprintf(debugCharacters, sizeof(debugCharacters), "GYRO  y: %6d", gyroScopeAngle);
     Serial.println(debugCharacters);
 }
+
+int getGyroscopeAngle() {
+    return gyroScopeAngle;
+}

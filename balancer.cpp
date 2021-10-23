@@ -149,5 +149,3 @@ void integrateEncoders() {
     variables.distance.right += counts.right - lastCounts.right;
     lastCounts.right = counts.right;
 }
-
-
