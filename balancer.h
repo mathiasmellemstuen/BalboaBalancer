@@ -1,6 +1,9 @@
 #ifndef BALBOA_BALANCER_BALANCER
 #define BALBOA_BALANCER_BALANCER
 
+#include <LSM6.h>
+#include <Balboa32U4.h>
+
 // Struct to hold left and right values. For more somple code
 struct LAR {
     int left = 0;
@@ -16,6 +19,9 @@ enum BalboaConstants {
     DISTANCE_DIFF_RESPONSE = -50,
     SPEED_RESPONSE = 3300,
     CALIBRATION_ITERATIONS = 100,
+
+    START_BALANCING_ANGLE = 45000,  // 45 Deg 
+    STOP_BALANCING_ANGLE = 70000,   // 70 Deg
 
     UPDATE_TIME = 1, // Device by 100 to get Hz
 };
@@ -36,7 +42,16 @@ struct Variables {
     bool balancing = false;
     bool running = false;
 
+    bool balanceUpdateDelayStatus = false;
+
 } variables;
+
+LSM6 imuT;
+Balboa32U4Motors motorsT;
+Balboa32U4Encoders encodersT;
+
+void balance();
+void lyingDown();
 
 void balancerSetup();
 void balancerUpdate();
@@ -44,7 +59,7 @@ void balancerUpdateSensors();
 void balancerResetEncoders();
 void balancerCalibrateGyro();
 
-void isBalancing();
-
+void integrateGyro();
+void integrateEncoders();
 
 #endif
