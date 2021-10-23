@@ -1,5 +1,7 @@
+#include "sensor.h"
 #include <Balboa32U4.h>
-#include "balancer.h"
+#include <LSM6.h>
+#include <Wire.h>
 
 Balboa32U4Motors motors;
 Balboa32U4ButtonA startStopButton;
@@ -9,17 +11,24 @@ bool running = false;
 
 void setup() {
   buzzer.play("!L30 V8 cdefgab>cbagfedc");
-  variables.speed.left = 100;
-  variables.speed.right = 200;
 
+
+  Serial.begin(9600);
+
+  sensorSetup(); 
 }
 
 void balance() {
   
-  motors.setSpeeds(variables.speed.left, variables.speed.right); 
+//  motors.setSpeeds(variables.speed.left, variables.speed.right); 
 }
 
+
 void loop() {
+
+
+  sensorUpdate();
+
 
   if(startStopButton.isPressed()) {
     running = !running; 
@@ -30,6 +39,6 @@ void loop() {
   else {
     balance(); 
   }
-  
-  delay(2);
+  sensorDebugPrint(); 
+  delay(100);
 } 
