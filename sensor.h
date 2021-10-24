@@ -2,8 +2,9 @@
 #define BALBOA_BALANCER_SENSOR
 
 void gyroscopeCalibration();
+void accelerometerCalibration();
 void sensorSetup();
 void sensorUpdate();
 void sensorDebugPrint(); 
-int getGyroscopeAngle(); 
+int getAngle();
 #endif
