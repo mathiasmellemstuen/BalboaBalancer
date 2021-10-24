@@ -4,12 +4,19 @@
 #include "compimentaryFilter.h"
 
 int zeroValue = 0; 
+<<<<<<< HEAD
 int zeroValueAccelerometerX = 0; 
 int zeroValueAccelerometerY = 0; 
 int zeroValueAccelerometerZ = 0; 
 
 float gyroScopeAngle;
 int finalAngle;
+=======
+int gyroScopeAngle = 0; 
+
+int accelerometer = 0;
+
+>>>>>>> aada910ec2eea894ad753f2080c319415e2672a9
 char debugCharacters[80];
 LSM6 imu;
 
