@@ -7,4 +7,5 @@ void sensorSetup();
 void sensorUpdate();
 void sensorDebugPrint(); 
 int getAngle();
+
 #endif

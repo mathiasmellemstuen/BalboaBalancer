@@ -10,13 +10,14 @@ Balboa32U4Motors motors;
 Balboa32U4Encoders encoders;
 Balboa32U4ButtonA button; 
 
-  const char song[] =
-  "!O6 T"
-  "l32ab-b>cl8r br b-bb-a a-r gr g-4 g4"
-  "a-r gr g-gg-f er e-r d4 e-4"
-  "gr msd8d8ml d-4d4"
-  "l32efg-gl8r msd8d8ml d-4d4"
-  "<bcd-d e-efg- ga-ab- a4 gr";
+const char song[] =
+"!O6 T"
+"l32ab-b>cl8r br b-bb-a a-r gr g-4 g4"
+"a-r gr g-gg-f er e-r d4 e-4"
+"gr msd8d8ml d-4d4"
+"l32efg-gl8r msd8d8ml d-4d4"
+"<bcd-d e-efg- ga-ab- a4 gr";
+
 void setup() {
 
   Serial.begin(9600);
@@ -51,10 +52,10 @@ void setup() {
   //buzzer.play(s);
   sensorSetup(); 
 }
+
 bool firstPass = true;
 
 void loop() {
-
   if(button.getSingleDebouncedRelease()) {
     firstPass = false;
 

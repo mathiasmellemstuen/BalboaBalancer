@@ -4,24 +4,16 @@
 #include "compimentaryFilter.h"
 
 int zeroValue = 0; 
-<<<<<<< HEAD
 int zeroValueAccelerometerX = 0; 
 int zeroValueAccelerometerY = 0; 
 int zeroValueAccelerometerZ = 0; 
 
 float gyroScopeAngle;
 int finalAngle;
-=======
-int gyroScopeAngle = 0; 
-
-int accelerometer = 0;
-
->>>>>>> aada910ec2eea894ad753f2080c319415e2672a9
 char debugCharacters[80];
 LSM6 imu;
 
 void accelerometerCalibration() {
-
     delay(500); // Making sure the gyroscope values is in steady state
     int totalX; 
     int totalY; 
@@ -44,6 +36,7 @@ void accelerometerCalibration() {
     zeroValueAccelerometerY = totalY / iterations; 
     zeroValueAccelerometerZ = totalZ / iterations; 
 }
+
 void gyroscopeCalibration() {
     delay(500); // Making sure the gyroscope values is in steady state
 
@@ -62,8 +55,8 @@ void gyroscopeCalibration() {
 
     zeroValue = total / iterations; 
 }
-void sensorSetup() {
 
+void sensorSetup() {
     Wire.begin();
 
     if(!imu.init()) {
@@ -82,7 +75,6 @@ void sensorUpdate() {
 
     float angleRate = (imu.g.y - zeroValue) / 29.0f; 
     
-
     gyroScopeAngle += angleRate * 10.0f; 
 
     gyroScopeAngle = gyroScopeAngle * (999.0f / 1000.0f);
@@ -94,14 +86,9 @@ void sensorUpdate() {
     float R = sqrt(pow(accelerometerX,2) + pow(accelerometerY,2) + pow(accelerometerZ,2));
     float accelerometerYAngle = acos(accelerometerZ / R) * 180 / M_PI;
 
-    finalAngle = accelerometerYAngle;
+    finalAngle = complimentaryFilter(accelerometerYAngle, gyroScopeAngle, 1, 0.95, 0.01);
     Serial.print("Degrees: "); 
     Serial.println(finalAngle);
-}
-
-void sensorDebugPrint() {
- //   snprintf(debugCharacters, sizeof(debugCharacters), "GYRO  y: %6d", gyroScopeAngle);
- ////   Serial.println(debugCharacters);
 }
 
 int getAngle() {
