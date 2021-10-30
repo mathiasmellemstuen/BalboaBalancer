@@ -204,7 +204,7 @@ void drive(int speed) {
     float k = 1.35; 
     speed = validateSpeed(speed);
     //motorsT.setSpeeds(speed - distanceDifference * DISTANCE_DIFF_RESPONSE / 100, speed - distanceDifference * DISTANCE_DIFF_RESPONSE / 100);
-    motorsT.setSpeeds(speed * k, speed); 
+    motorsT.setSpeeds(speed * k, -speed); 
 }
 
 #endif
