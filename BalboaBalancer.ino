@@ -60,4 +60,10 @@ void loop() {
     // Serial.println("\n");
 
     delay(10);
+
+    /*
+    TODO: Remove the delay
+    TODO: Refactor loop() to have 2 diffrent functions, 1 when the button is pressed, and 1 to run afther that.
+            Alternetivly also 1 to run before the button is pressed?
+    */
 }
