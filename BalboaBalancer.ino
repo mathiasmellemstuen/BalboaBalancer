@@ -10,37 +10,46 @@ Balboa32U4Encoders encoders;
 Balboa32U4ButtonA button; 
 
 void setup() {
-  Serial.begin(9600);
-   
-  sensorSetup(); 
+    Serial.begin(9600);
+      
+    sensorSetup(); 
 }
 
 bool firstPass = true;
 
 void loop() {
-  if(button.getSingleDebouncedRelease()) {
-    firstPass = false;
+    if (button.getSingleDebouncedRelease()) {
+        firstPass = false;
 
-    drive(-300);
-    delay(300);
-    drive(300); 
-    delay(300); 
-  }
+        drive(-300);
+        delay(300);
+        drive(300); 
+        delay(300);
+    }
 
-  sensorUpdate();
+    sensorUpdate();
 
-  float pidValue = pid(40.0f, 0.0f, 3.0f, 80.0f, getAngle(), 0.1, 0.5f);
+    int angleRange = 10;
+    float desiredAngle = 80.0f;
+    int angle = getAngle();
 
-  if(firstPass == false) {
-    // pidValue = pid(10.0f, 1.0f, 1.0f, 80.0f, getAngle(), 0.1);
-    drive(pidValue);
-  }
+    float pidValue = pid(20.0f, 0.0f, 0.0f, desiredAngle, angle, 0.1, 0.5f);
+    if (angle < desiredAngle + angleRange && angle > desiredAngle - angleRange) {
+        pidValue = 0;
+    }
 
-  Serial.print("\t\tPID: ");
-  Serial.println(pidValue);
+    if (firstPass == false) {
+        // pidValue = pid(10.0f, 1.0f, 1.0f, 80.0f, getAngle(), 0.1);
+        drive(pidValue);
+    }
 
-  Serial.print("error: ");
-  Serial.println(80.0f - getAngle());
+    Serial.print("\t\tPID: ");
+    Serial.println(pidValue);
 
-  delay(10);
+    // Serial.print("error: ");
+    // Serial.println(80.0f - getAngle());
+
+    Serial.println("\n");
+
+    delay(10);
 }

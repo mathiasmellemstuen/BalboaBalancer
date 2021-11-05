@@ -11,7 +11,8 @@ float pid(const float& kp, const float& ki, const float& kd, const float& wanted
 
     float smooth = previousSmooth * (T/(T + deltaTime)) + derivative * (deltaTime/(T + deltaTime));
 
-    float output = kp * error + ki * integral + kd * /*derivative*/ smooth;
+    // float output = kp * error + ki * integral + kd * derivative;
+    float output = kp * error + ki * integral + kd * smooth;
     previousError = error; 
     previousSmooth = smooth;
 

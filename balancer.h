@@ -50,8 +50,6 @@ LSM6 imuT;
 Balboa32U4Motors motorsT;
 Balboa32U4Encoders encodersT;
 
-
-
 void lyingDown() {
     variables.motorSpeed = 0;
     variables.distance = LAR();
@@ -64,6 +62,7 @@ void lyingDown() {
         variables.distance = LAR();
     }
 }
+
 int calculateMotorSpeed(int risingAngleOffset) {
     // Calculate the speed the wheels need to turn
     int angleResponse = ANGLE_RESPONSE * risingAngleOffset;
@@ -84,6 +83,7 @@ int calculateMotorSpeed(int risingAngleOffset) {
 int validateSpeed(int speed) {
     return speed > MOTOR_SPEED_LIMIT ? MOTOR_SPEED_LIMIT : speed < -MOTOR_SPEED_LIMIT ? -MOTOR_SPEED_LIMIT : speed; 
 }
+
 // Main code loop for balancing the robot
 void balanceing() {
     variables.angle = variables.angle * 999 / 1000;
@@ -98,6 +98,7 @@ void balanceing() {
         variables.motorSpeed - distanceDiff * DISTANCE_DIFF_RESPONSE / 100
     );
 }
+
 void balancerCalibrateGyro() {
     int total = 0;
 
@@ -109,6 +110,7 @@ void balancerCalibrateGyro() {
 
     variables.GYZero = total / CALIBRATION_ITERATIONS;
 }
+
 void integrateGyro() {
     variables.angleRate = (imuT.g.y - variables.GYZero) / 29;
     variables.angle += variables.angleRate * UPDATE_TIME;
@@ -131,11 +133,13 @@ void integrateEncoders() {
     variables.distance.right += counts.right - lastCounts.right;
     lastCounts.right = counts.right;
 }
+
 void balancerUpdateSensors() {
     imuT.read();
     integrateGyro();
     integrateEncoders();
 }
+
 void balancerSetup() {
     // Init imuT
     Wire.begin();

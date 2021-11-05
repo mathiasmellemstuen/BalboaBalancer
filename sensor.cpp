@@ -2,56 +2,35 @@
 #include <LSM6.h>
 #include <Wire.h>
 #include "compimentaryFilter.h"
+#include "vec3.h"
 
+vec3<int> zeroValueAccelerometer;   // Make float?
 int zeroValue = 0; 
-int zeroValueAccelerometerX = 0;    // make float?
-int zeroValueAccelerometerY = 0;    // make float?
-int zeroValueAccelerometerZ = 0;    // make float?
 
 float gyroScopeAngle;
 int finalAngle;
 char debugCharacters[80];
 LSM6 imu;
 
-void accelerometerCalibration() { //
-    delay(500); // Making sure the gyroscope values is in steady state
-    int totalX; 
-    int totalY; 
-    int totalZ; 
+void calibrateSensors() {
+    delay(500);
+    
+    vec3<int> totalA;
+    int totalG;
 
-    int iterations = 100; 
+    int iterations = 100;
 
-    for(int i = 0; i < iterations; i++) {
+    for (int i = 0; i < iterations; i++) {
+        imu.read();
 
-        imu.read(); 
-
-        totalX += imu.a.x; 
-        totalY += imu.a.y; 
-        totalZ += imu.a.z; 
-
+        totalA += imu.a;
+        totalG += imu.g.y;
+        
         delay(1);
     }
 
-    zeroValueAccelerometerX = totalX / iterations; 
-    zeroValueAccelerometerY = totalY / iterations; 
-    zeroValueAccelerometerZ = totalZ / iterations; 
-}
-
-void gyroscopeCalibration() { //
-    delay(500); // Making sure the gyroscope values is in steady state
-
-    int total; 
-    int iterations = 100; 
-
-    for(int i = 0; i < iterations; i++) {
-        imu.read(); 
-
-        total += imu.g.y; 
-
-        delay(1);
-    }
-
-    zeroValue = total / iterations; 
+    zeroValueAccelerometer = totalA / iterations;
+    zeroValue = totalG / iterations;
 }
 
 void sensorSetup() { //
@@ -64,8 +43,9 @@ void sensorSetup() { //
     imu.enableDefault(); 
     imu.writeReg(LSM6::CTRL2_G, 0b01011000); // 208 Hz, 1000 deg/s
 
-    gyroscopeCalibration(); 
-    accelerometerCalibration();
+    calibrateSensors();
+
+    Serial.println("***Done calibrating***");
 }
 
 void sensorUpdate() { // 
@@ -77,19 +57,20 @@ void sensorUpdate() { //
 
     gyroScopeAngle = gyroScopeAngle * (999.0f / 1000.0f);
 
-    int accelerometerX = (imu.a.x - zeroValueAccelerometerX);
-    int accelerometerY = (imu.a.y - zeroValueAccelerometerY);
-    int accelerometerZ = (imu.a.z - zeroValueAccelerometerZ);
+    vec3<int> accelerometer(imu.a.x - zeroValueAccelerometer.x,
+                            imu.a.y - zeroValueAccelerometer.y,
+                            imu.a.z - zeroValueAccelerometer.z);
 
-    float R = sqrt(pow(accelerometerX,2) + pow(accelerometerY,2) + pow(accelerometerZ,2));
-    float accelerometerYAngle = acos(accelerometerZ / R) * 180 / M_PI;
+    float R = sqrt(accelerometer.power(accelerometer, 2));
+    
+    float accelerometerYAngle = acos(accelerometer.z / R) * 180 / M_PI;
 
-    //Serial.print("test: ");
-    //Serial.println(accelerometerYAngle);
+    Serial.print("gyro: ");
+    Serial.println(gyroScopeAngle);
 
-    finalAngle = accelerometerYAngle;
+    // finalAngle = accelerometerYAngle;
 
-    //finalAngle = complimentaryFilter(accelerometerYAngle, gyroScopeAngle, 1, 0.95, 0.01);
+    finalAngle = complimentaryFilter(accelerometerYAngle, gyroScopeAngle, 1, 0.95, 0.01);
     //Serial.print("Degrees: "); 
     //Serial.println(finalAngle);
 }
