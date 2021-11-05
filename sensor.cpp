@@ -41,7 +41,7 @@ void sensorSetup() {
     }
 
     imu.enableDefault(); 
-    imu.writeReg(LSM6::CTRL2_G, 0b01011000); // 208 Hz, 1000 deg/s
+    imu.writeReg(LSM6::CTRL2_G, 0b01001000); // 104 Hz, 1000 deg/s
 
     calibrateSensors();
 
