@@ -19,9 +19,6 @@ struct vec3 {
 
     // Overloading
     vec3& operator+=(const vec3& other) {
-        if (this == &other) 
-            return *this;
-
         this->x += other.x;
         this->y += other.y;
         this->z += other.z;
