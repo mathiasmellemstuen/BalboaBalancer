@@ -54,9 +54,6 @@ struct vec3 {
     T power(const vec3& other, int power) {
         return pow(other.x,power) + pow(other.y,power) + pow(other.z,power);
     }
-
 };
-
-
 
 #endif

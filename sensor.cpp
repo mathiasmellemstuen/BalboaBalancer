@@ -33,10 +33,10 @@ void calibrateSensors() {
     zeroValue = totalG / iterations;
 }
 
-void sensorSetup() { //
+void sensorSetup() {
     Wire.begin();
 
-    if(!imu.init()) {
+    if (!imu.init()) {
         Serial.println("Failed to init IMU."); 
     }
 
@@ -48,13 +48,13 @@ void sensorSetup() { //
     Serial.println("***Done calibrating***");
 }
 
-void sensorUpdate() { // 
+void sensorUpdate() {
     imu.read();
 
     float angleRate = (imu.g.y - zeroValue) / 29.0f; 
     
+    // TODO: Just do thsi when the robot is balancing. Beacuse we do not need to recalibrate the gyro if the robot is not balancing.
     gyroScopeAngle += angleRate * 10.0f; 
-
     gyroScopeAngle = gyroScopeAngle * (999.0f / 1000.0f);
 
     vec3<int> accelerometer(imu.a.x - zeroValueAccelerometer.x,
