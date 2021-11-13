@@ -25,12 +25,10 @@ void loop() {
         
         sensorUpdate();
 
-        if (doDrive) {
-            drive(-300);
-            delay(300);
-            drive(300);
-            delay(300);
-        }
+        drive(-300);
+        delay(300);
+        drive(300);
+        delay(300);
     }
 
     int angleRange = 10;
@@ -47,7 +45,7 @@ void loop() {
         pidValue = pid(20.0f, 0.0f, 0.0f, desiredAngle, angle, 0.1, 0.5f); 
     }
 
-    if (firstPass == false && doDrive) {
+    if (firstPass == false) {
         drive(pidValue);
     }
 
