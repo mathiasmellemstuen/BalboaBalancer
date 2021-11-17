@@ -82,7 +82,8 @@ void sensorUpdate() { //
     int accelerometerZ = (imu.a.z - zeroValueAccelerometerZ);
 
     float R = sqrt(pow(accelerometerX,2) + pow(accelerometerY,2) + pow(accelerometerZ,2));
-    float accelerometerYAngle = acos(accelerometerZ / R) * 180 / M_PI;
+    //float accelerometerYAngle = acos(accelerometerZ / R) * 180 / M_PI;
+    float accelerometerYAngle = atan2(accelerometerZ, accelerometerX) * 180/M_PI;
 
     //Serial.print("test: ");
     //Serial.println(accelerometerYAngle);

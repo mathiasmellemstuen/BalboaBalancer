@@ -201,10 +201,11 @@ void balancerResetEncoders() {
 
 void drive(int speed) {
     //int16_t distanceDifference = variables.distance.right - variables.distance.left;
-    float k = 1.35; 
+    // float k = 1.35; 
+    float k = 1.0;
     speed = validateSpeed(speed);
     //motorsT.setSpeeds(speed - distanceDifference * DISTANCE_DIFF_RESPONSE / 100, speed - distanceDifference * DISTANCE_DIFF_RESPONSE / 100);
-    motorsT.setSpeeds(speed * k, -speed); 
+    motorsT.setSpeeds(speed * k, speed); 
 }
 
 #endif
